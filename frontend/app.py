@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext
 from backend import PasswordEvaluator
 from backend import PasswordGenerator
+from PIL import Image, ImageTk
+import os
 
 class EntropyXApp:
     def __init__(self, root):
@@ -9,9 +11,36 @@ class EntropyXApp:
         self.root.title("EntropyX – Password Strength Checker & Generator")
         self.root.geometry("700x650")
         self.root.resizable(False, False)
+        icon_img = ImageTk.PhotoImage(file=os.path.join("assets", "favicon.png"))
+        self.root.iconphoto(False, icon_img)
+        self._load_logo()
+        self._set_icon()
 
         self._build_password_checker_ui()
         self._build_password_generator_ui()
+
+    def _set_icon(self):
+        try:
+            icon_path = os.path.join("assets", "favicon.png")
+            self.icon_img = ImageTk.PhotoImage(file=icon_path)
+            self.root.iconphoto(False, self.icon_img)
+        except Exception as e:
+            print(f"Could not set favicon: {e}")
+
+
+    def _load_logo(self):
+        logo_path = os.path.join("assets", "logo.png")
+        try:
+            image = Image.open(logo_path)
+            image = image.resize((400, 90), Image.Resampling.LANCZOS)
+            self.logo_img = ImageTk.PhotoImage(image)  # Store as instance variable
+
+            logo_label = tk.Label(self.root, image=self.logo_img, bg=self.root.cget("bg"))
+            logo_label.pack(pady=(10, 0))
+
+        except Exception as e:
+            print(f"Could not load logo: {e}")
+
 
     def _build_password_checker_ui(self):
         frame = ttk.Labelframe(self.root, text="🔍 Password Strength Checker", padding=10)
