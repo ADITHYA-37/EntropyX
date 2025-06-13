@@ -1,5 +1,5 @@
 
-![EntropyX](assets/logo.png)
+![EntropyX](assets/logo-w.png)
 
 
 EntropyX is a powerful desktop tool to evaluate password strength and generate secure passwords using smart entropy-based logic. It's lightweight, user-friendly, and perfect for anyone serious about digital security.
