@@ -2,7 +2,7 @@ import math
 import re
 from typing import Tuple, List
 
-# Optional dictionary check with nltk
+#Dictionary check with nltk
 try:
     from nltk.corpus import words
     import nltk
